@@ -329,8 +329,12 @@ impl From<ErrorCode> for ErrorExplanation {
 }
 
 pub fn explain(code: &str) -> anyhow::Result<ErrorExplanation> {
-    let code = ErrorCode::parse_id(code)
-        .ok_or_else(|| anyhow!("Unknown error code '{code}'. See `starforge explain-error --help`."))?;
+    let code = ErrorCode::parse_id(code).ok_or_else(|| {
+        coded(
+            ErrorCode::GeneralUsageFailure,
+            format!("Unknown error code '{code}'. See `starforge explain-error --help`."),
+        )
+    })?;
     Ok(code.into())
 }
 

@@ -494,8 +494,18 @@ async fn run() {
     let correlation_id = match utils::correlation::resolve(cli.correlation_id.as_deref()) {
         Ok(id) => id,
         Err(e) => {
-            eprintln!("Invalid correlation ID: {}", e);
-            utils::exit_codes::ExitCode::Usage.exit();
+            let code = utils::errors::ErrorCode::GeneralUsageFailure;
+            if utils::output::is_json_mode_enabled() {
+                let _ = utils::output::print_error_json(code, &format!("Invalid correlation ID: {e}"));
+            } else {
+                eprintln!("Invalid correlation ID: {e}");
+                eprintln!("Error code: {}", code.id());
+                eprintln!("Cause: {}", code.cause());
+                eprintln!("Fix: {}", code.fix());
+                eprintln!("Exit: {} ({})", code.exit_code().code(), code.exit_code().name());
+                eprintln!("Docs: {}", code.docs_url());
+            }
+            code.exit_code().exit();
         }
     };
     utils::correlation::init(correlation_id);

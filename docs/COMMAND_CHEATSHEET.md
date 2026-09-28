@@ -58,6 +58,7 @@ Global options: `--json`, `--quiet`/`-q`, `--log-format`, `--log-dir`, `--correl
 | `diagnostics` | Run connectivity diagnostics for attached Ledger/Trezor devices |
 | `docs` | Contract documentation portal (generate, view, search) |
 | `explain` | Analyze and explain smart contract code using AI |
+| `explain-error` | Explain a stable StarForge error code |
 | `gas` | Gas analysis and optimization helpers |
 | `generate` | Generate smart contracts from natural language prompts |
 | `governance` | Contract upgrade governance (proposals, voting, timelock, audit) |

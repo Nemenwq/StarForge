@@ -76,6 +76,8 @@ enum Commands {
     Prompts,
     #[command(about = "Analyze and explain smart contract code using AI")]
     Explain,
+    #[command(about = "Explain a stable StarForge error code")]
+    ExplainError,
     #[command(about = "Manage starforge configuration (telemetry, network)")]
     Config,
     #[command(about = "Manage telemetry settings directly")]
@@ -577,6 +579,7 @@ const SUBCOMMAND_INFO: &[(&str, &str)] = &[
         "explain",
         "Analyze and explain smart contract code using AI",
     ),
+    ("explain-error", "Explain a stable StarForge error code"),
     (
         "config",
         "Manage starforge configuration (telemetry, network)",

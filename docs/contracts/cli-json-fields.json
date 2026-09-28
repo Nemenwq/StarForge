@@ -1,6 +1,59 @@
 {
   "version": 1,
   "commands": {
+    "command error envelope": {
+      "description": "JSON error object emitted for failed CLI commands.",
+      "fields": [
+        {
+          "path": "version",
+          "type": "number",
+          "stability": "stable",
+          "description": "JSON envelope schema version."
+        },
+        {
+          "path": "ok",
+          "type": "boolean",
+          "stability": "stable",
+          "description": "False for a failed command."
+        },
+        {
+          "path": "error.code",
+          "type": "string",
+          "stability": "stable",
+          "description": "Stable StarForge error code; see docs/ERRORS.md."
+        },
+        {
+          "path": "error.message",
+          "type": "string",
+          "stability": "stable",
+          "description": "Detailed command failure message."
+        },
+        {
+          "path": "error.cause",
+          "type": "string",
+          "stability": "stable",
+          "description": "One-line cause associated with the stable error code."
+        },
+        {
+          "path": "error.fix",
+          "type": "string",
+          "stability": "stable",
+          "description": "Documented one-line corrective action."
+        },
+        {
+          "path": "error.docs",
+          "type": "string",
+          "stability": "stable",
+          "description": "Documentation URL for the error code."
+        },
+        {
+          "path": "error.exit_code",
+          "type": "number",
+          "stability": "stable",
+          "description": "Process exit status mapped to the error code."
+        }
+      ]
+    },
     "contract inspect": {
       "description": "JSON output emitted by `starforge contract inspect <CONTRACT_ID> --json`.",
       "fields": [

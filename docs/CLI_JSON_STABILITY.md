@@ -3,7 +3,9 @@
 StarForge commands that expose `--json` output must declare the stability of
 their documented JSON fields. The contract is tracked in
 `docs/contracts/cli-json-fields.json` and enforced by
-`tests/json_contract_stability.rs`.
+`tests/json_contract_stability.rs`. The shared error envelope is stable across
+commands; error identifiers and their remediation metadata are cataloged in
+[`ERRORS.md`](ERRORS.md).
 
 ## Stability tiers
 
