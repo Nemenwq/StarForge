@@ -225,7 +225,11 @@ impl ErrorCode {
         if let Some(coded) = err.chain().find_map(|cause| cause.downcast_ref::<CodedError>()) {
             return coded.code;
         }
-        let message = err.to_string().to_ascii_lowercase();
+        let message = err
+            .chain()
+            .map(|cause| cause.to_string().to_ascii_lowercase())
+            .collect::<Vec<_>>()
+            .join(" ");
         if message.contains("wallet") && (message.contains("not found") || message.contains("no secret")) {
             return if message.contains("secret") { Self::WalletSecretMissing } else { Self::WalletNotFound };
         }
